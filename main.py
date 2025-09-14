@@ -4,9 +4,11 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import cross_val_score
+import random
+
 
 # --------- 1) charger le fichier (mettre le bon chemin) ----------
-file_path = "StatsjoueursLIGUE.xlsx"   # adapter si nécessaire
+file_path = "StatsjoueursLIGUE.xlsx"
 df = pd.read_excel(file_path)
 
 # --------- 2) nettoyer / convertir les temps en secondes ----------
@@ -94,16 +96,38 @@ def best_splits_for_eight(player_names):
         })
     return sorted(splits, key=lambda x: x['diff'])
 
-# --------- 7) exemple: choisir 8 joueurs (les + joués) ----------
-top8 = df_player.sort_values('Matches_total', ascending=False)['Joueur'].head(8).tolist()
-print("\nTop8:", top8)
-splits = best_splits_for_eight(top8)
-best = splits[0]
-print("\nMeilleure partition (plus proche de 50%):")
-print(best)
+# -------- 7) Fonction pour sortir le top 8 --------
+def get_top8(df, col_score="Matches_total", col_player="Joueur"):
+    """
+    Retourne la liste des 8 meilleurs joueurs selon un score donné.
+    """
+    top8 = df.sort_values(col_score, ascending=False)[col_player].head(8).tolist()
+    return top8
 
-# --------- 8) export JSON ----------
+# -------- 8) Fonction de matchmaking (bracket simple) --------
+def get_random8(df, col_player="Joueur"):
+    """
+    Tire 8 joueurs au hasard depuis un DataFrame.
+    """
+    if len(df) < 8:
+        raise ValueError("Le DataFrame doit contenir au moins 8 joueurs.")
+    return df[col_player].sample(8, random_state=None).tolist()
+
+def make_matchmaking(df, col_player="Joueur"):
+    """
+    Tire 8 joueurs au hasard puis fait le meilleur matchmaking possible
+    grâce à la fonction best_splits_for_eight.
+    """
+    players = get_random8(df, col_player=col_player)
+
+    splits = best_splits_for_eight(players)  # ta fonction existante
+    best = splits[0]  # premier élément = meilleur split
+
+    return best
+
+# -------- Exemple d'utilisation --------
+matchmaking = make_matchmaking(df_player)
+
+# -------- Export JSON --------
 with open("meilleure_partition.json", "w", encoding="utf-8") as f:
-    json.dump(best, f, ensure_ascii=False, indent=4)
-
-print("\nRésultat exporté dans 'meilleure_partition.json'")
+    json.dump(matchmaking, f, ensure_ascii=False, indent=4)
