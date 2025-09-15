@@ -1,0 +1,98 @@
+[
+  {
+    "Joueur": "Player1",
+    "Score": 275,
+    "Tués": 13,
+    "Assist": 4,
+    "Morts": 11,
+    "Dégâts": 1250,
+    "temps mort %": 0.21,
+    "Temps total_s": 3700,
+    "Temps mort_s": 780,
+    "Matches": 22
+  },
+  {
+    "Joueur": "Player2",
+    "Score": 310,
+    "Tués": 16,
+    "Assist": 5,
+    "Morts": 9,
+    "Dégâts": 1450,
+    "temps mort %": 0.18,
+    "Temps total_s": 4200,
+    "Temps mort_s": 760,
+    "Matches": 26
+  },
+  {
+    "Joueur": "Player3",
+    "Score": 240,
+    "Tués": 11,
+    "Assist": 3,
+    "Morts": 12,
+    "Dégâts": 1100,
+    "temps mort %": 0.25,
+    "Temps total_s": 3400,
+    "Temps mort_s": 850,
+    "Matches": 20
+  },
+  {
+    "Joueur": "Player4",
+    "Score": 290,
+    "Tués": 14,
+    "Assist": 6,
+    "Morts": 10,
+    "Dégâts": 1350,
+    "temps mort %": 0.20,
+    "Temps total_s": 3900,
+    "Temps mort_s": 780,
+    "Matches": 23
+  },
+  {
+    "Joueur": "Player5",
+    "Score": 260,
+    "Tués": 12,
+    "Assist": 4,
+    "Morts": 13,
+    "Dégâts": 1200,
+    "temps mort %": 0.23,
+    "Temps total_s": 3600,
+    "Temps mort_s": 830,
+    "Matches": 21
+  },
+  {
+    "Joueur": "Player6",
+    "Score": 320,
+    "Tués": 17,
+    "Assist": 7,
+    "Morts": 8,
+    "Dégâts": 1500,
+    "temps mort %": 0.17,
+    "Temps total_s": 4300,
+    "Temps mort_s": 740,
+    "Matches": 27
+  },
+  {
+    "Joueur": "Player7",
+    "Score": 255,
+    "Tués": 12,
+    "Assist": 5,
+    "Morts": 12,
+    "Dégâts": 1180,
+    "temps mort %": 0.22,
+    "Temps total_s": 3500,
+    "Temps mort_s": 800,
+    "Matches": 19
+  },
+  {
+    "Joueur": "Player8",
+    "Score": 305,
+    "Tués": 15,
+    "Assist": 6,
+    "Morts": 9,
+    "Dégâts": 1400,
+    "temps mort %": 0.19,
+    "Temps total_s": 4100,
+    "Temps mort_s": 770,
+    "Matches": 24
+  }
+]
