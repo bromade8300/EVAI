@@ -1,0 +1,19 @@
+{
+    "teamA": [
+        "EVAxProGamer",
+        "SRxEny",
+        "SRxMrCroustillant",
+        "SRxT4all"
+    ],
+    "teamB": [
+        "QuantumGamer",
+        "SRDxNiko",
+        "SRxAzWaK",
+        "VRxMaster"
+    ],
+    "avgA": 0.4483518318181823,
+    "avgB": 0.4483418623106066,
+    "pA": 0.5000055590374065,
+    "pB": 0.4999944409625935,
+    "diff": 5.559037406510647e-06
+}

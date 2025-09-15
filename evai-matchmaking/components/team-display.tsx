@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
-import { mockPlayers, calculatePlayerScore, getRankBadgeColor, type Player } from "@/lib/player-data"
+import { mockPlayers, getRankBadgeColor, type Player } from "@/lib/player-data"
 import { Users, Trophy, Zap, Target, TrendingUp, TrendingDown, Minus } from "lucide-react"
 
 interface TeamDisplayProps {
@@ -24,7 +24,9 @@ export function TeamDisplay({ teamData }: TeamDisplayProps) {
   }
 
   const teamAPlayers = teamData.teamA.map((id) => getPlayerById(id)).filter(Boolean) as Player[]
+  console.log("Team A Players:", teamAPlayers)
   const teamBPlayers = teamData.teamB.map((id) => getPlayerById(id)).filter(Boolean) as Player[]
+  console.log("Team B Players:", teamBPlayers)
 
   const getBalanceIcon = () => {
     const diffPercent = Math.abs(teamData.diff * 100)
@@ -81,7 +83,7 @@ export function TeamDisplay({ teamData }: TeamDisplayProps) {
         {/* Players List */}
         <div className="space-y-3">
           {players.map((player, index) => {
-            const playerScore = calculatePlayerScore(player)
+            const playerScore = player.stats.score
             return (
               <div
                 key={player.id}
@@ -102,15 +104,15 @@ export function TeamDisplay({ teamData }: TeamDisplayProps) {
                     <div className="flex items-center gap-4 text-xs text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Trophy className="w-3 h-3" />
-                        {(player.stats.winrate * 100).toFixed(0)}%
+                        {/* {(player.stats.winrate * 100).toFixed(0)}% */}
                       </span>
                       <span className="flex items-center gap-1">
                         <Zap className="w-3 h-3" />
-                        {player.stats.kd.toFixed(1)}
+                        {/* {player.stats.kd.toFixed(1)} */}
                       </span>
                       <span className="flex items-center gap-1">
                         <Target className="w-3 h-3" />
-                        {player.stats.avgDamage}
+                        {/* {player.stats.avgDamage} */}
                       </span>
                     </div>
                   </div>

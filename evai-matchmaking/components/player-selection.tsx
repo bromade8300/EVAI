@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { mockPlayers, calculatePlayerScore, getRankBadgeColor, type Player } from "@/lib/player-data"
+import { mockPlayers, getRankBadgeColor, type Player } from "@/lib/player-data"
 import { Search, Users, Zap, Target, Clock, Trophy } from "lucide-react"
 
 interface PlayerSelectionProps {
@@ -74,7 +74,7 @@ export function PlayerSelection({ selectedPlayers, onSelectionChange }: PlayerSe
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredPlayers.map((player) => {
               const isSelected = selectedPlayers.includes(player.id)
-              const playerScore = calculatePlayerScore(player)
+              const playerScore = player.stats.score
 
               return (
                 <Card
@@ -114,7 +114,7 @@ export function PlayerSelection({ selectedPlayers, onSelectionChange }: PlayerSe
                           <Trophy className="w-3 h-3" />
                           Winrate
                         </span>
-                        <span className="font-semibold text-secondary">{(player.stats.winrate * 100).toFixed(0)}%</span>
+                        <span className="font-semibold text-secondary">{(player.stats.matches * 100).toFixed(0)}%</span>
                       </div>
 
                       <div className="flex items-center justify-between text-xs">
@@ -122,7 +122,7 @@ export function PlayerSelection({ selectedPlayers, onSelectionChange }: PlayerSe
                           <Zap className="w-3 h-3" />
                           K/D
                         </span>
-                        <span className="font-semibold text-accent">{player.stats.kd.toFixed(1)}</span>
+                        <span className="font-semibold text-accent">{player.stats.deadTime}</span>
                       </div>
 
                       <div className="flex items-center justify-between text-xs">
@@ -130,7 +130,7 @@ export function PlayerSelection({ selectedPlayers, onSelectionChange }: PlayerSe
                           <Target className="w-3 h-3" />
                           Dégâts
                         </span>
-                        <span className="font-semibold text-primary">{player.stats.avgDamage}</span>
+                        <span className="font-semibold text-primary">{player.stats.damage}</span>
                       </div>
 
                       <div className="flex items-center justify-between text-xs">

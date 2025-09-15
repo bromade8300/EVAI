@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { mockPlayers, calculatePlayerScore, type Player } from "@/lib/player-data"
+import { mockPlayers, type Player } from "@/lib/player-data"
 import {
   BarChart,
   Bar,
@@ -18,7 +18,7 @@ import {
   PolarRadiusAxis,
   Radar,
 } from "recharts"
-import { BarChart3, TrendingUp, Users } from "lucide-react"
+import { BarChart3, PlugZap, TrendingUp, Users } from "lucide-react"
 
 interface StatsVisualizationProps {
   teamData: {
@@ -43,18 +43,18 @@ export function StatsVisualization({ teamData }: StatsVisualizationProps) {
   const comparisonData = [
     {
       metric: "Winrate",
-      "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamAPlayers.length) * 100,
-      "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamBPlayers.length) * 100,
+      // "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamAPlayers.length) * 100,
+      // "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamBPlayers.length) * 100,
     },
     {
       metric: "K/D Ratio",
-      "Équipe A": teamAPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamAPlayers.length,
-      "Équipe B": teamBPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamBPlayers.length,
+      // "Équipe A": teamAPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamAPlayers.length,
+      // "Équipe B": teamBPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamBPlayers.length,
     },
     {
       metric: "Dégâts Moy.",
-      "Équipe A": teamAPlayers.reduce((sum, p) => sum + p.stats.avgDamage, 0) / teamAPlayers.length,
-      "Équipe B": teamBPlayers.reduce((sum, p) => sum + p.stats.avgDamage, 0) / teamBPlayers.length,
+      "Équipe A": teamAPlayers.reduce((sum, p) => sum + p.stats.damage, 0) / teamAPlayers.length,
+      "Équipe B": teamBPlayers.reduce((sum, p) => sum + p.stats.damage, 0) / teamBPlayers.length,
     },
     {
       metric: "Assists",
@@ -63,8 +63,8 @@ export function StatsVisualization({ teamData }: StatsVisualizationProps) {
     },
     {
       metric: "Score Global",
-      "Équipe A": (teamAPlayers.reduce((sum, p) => sum + calculatePlayerScore(p), 0) / teamAPlayers.length) * 100,
-      "Équipe B": (teamBPlayers.reduce((sum, p) => sum + calculatePlayerScore(p), 0) / teamBPlayers.length) * 100,
+      "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.score, 0) / teamAPlayers.length) * 100,
+      "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.score, 0) / teamBPlayers.length) * 100,
     },
   ]
 
@@ -72,20 +72,20 @@ export function StatsVisualization({ teamData }: StatsVisualizationProps) {
   const radarData = [
     {
       metric: "Winrate",
-      "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamAPlayers.length) * 100,
-      "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamBPlayers.length) * 100,
+      // "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamAPlayers.length) * 100,
+      // "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.winrate, 0) / teamBPlayers.length) * 100,
       fullMark: 100,
     },
     {
       metric: "K/D",
-      "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamAPlayers.length) * 20,
-      "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamBPlayers.length) * 20,
+      // "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamAPlayers.length) * 20,
+      // "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamBPlayers.length) * 20,
       fullMark: 100,
     },
     {
       metric: "Dégâts",
-      "Équipe A": teamAPlayers.reduce((sum, p) => sum + p.stats.avgDamage, 0) / teamAPlayers.length / 20,
-      "Équipe B": teamBPlayers.reduce((sum, p) => sum + p.stats.avgDamage, 0) / teamBPlayers.length / 20,
+      "Équipe A": teamAPlayers.reduce((sum, p) => sum + p.stats.damage, 0) / teamAPlayers.length / 20,
+      "Équipe B": teamBPlayers.reduce((sum, p) => sum + p.stats.damage, 0) / teamBPlayers.length / 20,
       fullMark: 100,
     },
     {
@@ -112,17 +112,15 @@ export function StatsVisualization({ teamData }: StatsVisualizationProps) {
   const individualPerformanceData = [
     ...teamAPlayers.map((player) => ({
       name: player.name.length > 10 ? player.name.substring(0, 10) + "..." : player.name,
-      score: calculatePlayerScore(player) * 100,
+      score: player.stats.score * 100,
       team: "A",
-      winrate: player.stats.winrate * 100,
-      kd: player.stats.kd,
+      kd: player.stats.matches,
     })),
     ...teamBPlayers.map((player) => ({
       name: player.name.length > 10 ? player.name.substring(0, 10) + "..." : player.name,
-      score: calculatePlayerScore(player) * 100,
+      score:  player.stats.score * 100,
       team: "B",
-      winrate: player.stats.winrate * 100,
-      kd: player.stats.kd,
+      kd: player.stats.matches,
     })),
   ]
 

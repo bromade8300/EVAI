@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { mockPlayers, calculatePlayerScore, type Player } from "@/lib/player-data"
+import { mockPlayers, type Player } from "@/lib/player-data"
 import { analyzeTeamBalance } from "@/lib/team-balancing"
 import { Download, FileJson, FileSpreadsheet, Share2, Copy, Check } from "lucide-react"
 
@@ -44,7 +44,7 @@ export function ExportFeatures({ teamData }: ExportFeaturesProps) {
             rank: player.rank,
             team: player.team,
             stats: player.stats,
-            calculatedScore: calculatePlayerScore(player),
+            calculatedScore:player.stats.score,
           })),
           averageWinrate: teamData.avgA,
           winProbability: teamData.pA,
@@ -57,7 +57,7 @@ export function ExportFeatures({ teamData }: ExportFeaturesProps) {
             rank: player.rank,
             team: player.team,
             stats: player.stats,
-            calculatedScore: calculatePlayerScore(player),
+            calculatedScore: player.stats.score,
           })),
           averageWinrate: teamData.avgB,
           winProbability: 1 - teamData.pA,
@@ -119,13 +119,11 @@ export function ExportFeatures({ teamData }: ExportFeaturesProps) {
         player.name,
         player.rank,
         player.team || "",
-        player.stats.winrate,
-        player.stats.kd,
-        player.stats.avgDamage,
+        player.stats.damage,
         player.stats.assists,
         player.stats.deathTime,
         player.stats.score,
-        player.stats.playTime,
+        player.stats.totalPlayTime,
         player.calculatedScore.toFixed(4),
       ]),
       ...data.teams.teamB.players.map((player) => [
@@ -133,13 +131,11 @@ export function ExportFeatures({ teamData }: ExportFeaturesProps) {
         player.name,
         player.rank,
         player.team || "",
-        player.stats.winrate,
-        player.stats.kd,
-        player.stats.avgDamage,
+        player.stats.damage,
         player.stats.assists,
         player.stats.deathTime,
         player.stats.score,
-        player.stats.playTime,
+        player.stats.totalPlayTime,
         player.calculatedScore.toFixed(4),
       ]),
     ]
