@@ -78,8 +78,8 @@ export function StatsVisualization({ teamData }: StatsVisualizationProps) {
     },
     {
       metric: "K/D",
-      // "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamAPlayers.length) * 20,
-      // "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.kd, 0) / teamBPlayers.length) * 20,
+      "Équipe A": (teamAPlayers.reduce((sum, p) => sum + p.stats.kills/p.stats.deaths, 0) / teamAPlayers.length) * 20,
+      "Équipe B": (teamBPlayers.reduce((sum, p) => sum + p.stats.kills/p.stats.deaths, 0) / teamBPlayers.length) * 20,
       fullMark: 100,
     },
     {
@@ -156,8 +156,8 @@ export function StatsVisualization({ teamData }: StatsVisualizationProps) {
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
                   {(
-                    comparisonData.find((d) => d.metric === "K/D Ratio")?.[
-                      teamData.pA > 0.5 ? "Équipe A" : "Équipe B"
+                    comparisonData.find((d) => d.metric === "K/D")?.[
+                      teamData.pA > 0.5 ? "Équipe A" : "Équipe B" 
                     ] || 0
                   ).toFixed(1)}
                 </div>

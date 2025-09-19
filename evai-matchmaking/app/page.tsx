@@ -84,7 +84,7 @@ export default function HomePage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-secondary">
-                {balanceAnalysis ? `${balanceAnalysis.diffPercent.toFixed(2)}%` : "--"}
+                {balanceAnalysis ? `${teamData?.diff.toFixed(2)}%` : "--"}
               </div>
               <p className="text-xs text-muted-foreground">Différence entre les équipes (objectif ~0%)</p>
             </CardContent>
