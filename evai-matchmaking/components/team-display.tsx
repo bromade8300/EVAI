@@ -71,11 +71,11 @@ export function TeamDisplay({ teamData }: TeamDisplayProps) {
         {/* Team Stats */}
         <div className="grid grid-cols-2 gap-4 p-4 bg-muted/20 rounded-lg">
           <div className="text-center">
-            <div className={`text-2xl font-bold text-${color}`}>{(avgWinrate * 100).toFixed(1)}%</div>
+            <div className={`text-2xl font-bold text-${color}`}>{(avgWinrate * 100).toFixed(2)}%</div>
             <div className="text-xs text-muted-foreground">Winrate Moyen</div>
           </div>
           <div className="text-center">
-            <div className={`text-2xl font-bold text-${color}`}>{(winProbability * 100).toFixed(1)}%</div>
+            <div className={`text-2xl font-bold text-${color}`}>{(winProbability * 100).toFixed(2)}%</div>
             <div className="text-xs text-muted-foreground">Prob. Victoire</div>
           </div>
         </div>
@@ -142,7 +142,7 @@ export function TeamDisplay({ teamData }: TeamDisplayProps) {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
             <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-              <div className="text-2xl font-bold text-primary mb-1">{(teamData.pA * 100).toFixed(1)}%</div>
+              <div className="text-2xl font-bold text-primary mb-1">{(teamData.pA * 100).toFixed(2)}%</div>
               <div className="text-sm text-muted-foreground">Équipe A</div>
             </div>
 
@@ -151,7 +151,7 @@ export function TeamDisplay({ teamData }: TeamDisplayProps) {
             </div>
 
             <div className="p-4 bg-secondary/10 rounded-lg border border-secondary/30">
-              <div className="text-2xl font-bold text-secondary mb-1">{((1 - teamData.pA) * 100).toFixed(1)}%</div>
+              <div className="text-2xl font-bold text-secondary mb-1">{((1 - teamData.pA) * 100).toFixed(2)}%</div>
               <div className="text-sm text-muted-foreground">Équipe B</div>
             </div>
           </div>

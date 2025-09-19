@@ -24,18 +24,6 @@
     "Matches": 9
   },
   {
-    "Joueur": "EVAxProGamer",
-    "Score": 2400,
-    "Tués": 115,
-    "Assist": 11.5,
-    "Morts": 8,
-    "Dégâts": 1800,
-    "temps mort %": 8,
-    "Temps total_s": 115,
-    "Temps mort_s": 19.55,
-    "Matches": 10
-  },
-  {
     "Joueur": "SRxEny",
     "Score": 2200,
     "Tués": 90,
@@ -72,6 +60,18 @@
     "Matches": 6
   },
   {
+    "Joueur": "EVAxProGamer",
+    "Score": 2400,
+    "Tués": 115,
+    "Assist": 11.5,
+    "Morts": 8,
+    "Dégâts": 1800,
+    "temps mort %": 8,
+    "Temps total_s": 115,
+    "Temps mort_s": 19.55,
+    "Matches": 10
+  },
+  {
     "Joueur": "SRxT4all",
     "Score": 2150,
     "Tués": 95,
@@ -84,15 +84,15 @@
     "Matches": 8
   },
   {
-    "Joueur": "QuantumGamer",
-    "Score": 2280,
-    "Tués": 108,
-    "Assist": 12.3,
-    "Morts": 8.7,
-    "Dégâts": 1720,
-    "temps mort %": 8.7,
-    "Temps total_s": 105,
-    "Temps mort_s": 18.9,
-    "Matches": 9
+    "Joueur": "CyberNinja",
+    "Score": 2180,
+    "Tués": 20,
+    "Assist": 14.8,
+    "Morts": 9.5,
+    "Dégâts": 1620,
+    "temps mort %": 9.5,
+    "Temps total_s": 92,
+    "Temps mort_s": 20.24,
+    "Matches": 8
   }
 ]
