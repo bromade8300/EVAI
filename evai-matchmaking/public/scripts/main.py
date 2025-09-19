@@ -143,3 +143,16 @@ except Exception as e:
 
 print("\nMeilleure partition trouvée :")
 print(json.dumps(best, indent=4, ensure_ascii=False))
+
+# --------- 5) Logging JSON pour la surveillance ---------
+try:
+    log_entry = {
+        "timestamp": dt.datetime.now().isoformat(),
+        "players": players_df.to_dict(orient="records"),
+        "best_split": best
+    }
+    with open("logs.json", "a", encoding="utf-8") as log_file:
+        log_file.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
+    print("\n✅ Log ajouté dans logs.json")
+except Exception as e:
+    print(f"Erreur lors de l'écriture du log : {e}")
