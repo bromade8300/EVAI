@@ -143,3 +143,39 @@ except Exception as e:
 
 print("\nMeilleure partition trouvée :")
 print(json.dumps(best, indent=4, ensure_ascii=False))
+
+# --------- 5) Logging JSON pour la surveillance ---------
+try:
+    log_file_path = "logs.json"
+
+    # Charger l'existant (tableau JSON) ou créer un nouveau tableau vide
+    if os.path.exists(log_file_path):
+        with open(log_file_path, "r", encoding="utf-8") as f:
+            try:
+                logs = json.load(f)
+                if not isinstance(logs, list):
+                    logs = []  # si jamais le fichier contient autre chose
+            except json.JSONDecodeError:
+                logs = []
+    else:
+        logs = []
+
+    # Ajouter un nouveau log basé sur la meilleure partition trouvée
+    nouveau_log = {
+        "timestamp": dt.datetime.now().isoformat(),
+        "results": {
+            "pA": best["pA"],
+            "pB": best["pB"],
+            "diff": best["diff"]
+        }
+    }
+    logs.append(nouveau_log)
+
+    # Réécrire tout le tableau JSON
+    with open(log_file_path, "w", encoding="utf-8") as f:
+        json.dump(logs, f, indent=4, ensure_ascii=False)
+
+    print(f"Log ajouté dans {log_file_path}.")
+except Exception as e:
+    print(f"Erreur lors de la mise à jour des logs : {e}")
+
