@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 
 # --------- 1) Charger le dataset historique (pour entraîner le modèle) ----------
 try:
-    file_path = "./StatsjoueursLIGUE.xlsx"
+    file_path = "./public/script/StatsjoueursLIGUE.xlsx"
     df = pd.read_excel(file_path)
 except FileNotFoundError:
     absolute_path = os.path.abspath(file_path)
@@ -111,6 +111,10 @@ def best_splits(players_df):
         denom = (avgA + avgB)
         pA = avgA / denom if denom > 0 else 0.5
         splits.append({
+            "teamA": sorted(teamA),
+            "teamB": sorted(teamB),
+            "avgA": float(avgA),
+            "avgB": float(avgB),
             "pA": float(pA),
             "pB": float(1 - pA),
             "diff": float(abs(pA - 0.5))
@@ -144,7 +148,11 @@ print(json.dumps(best, indent=4, ensure_ascii=False))
 try:
     log_entry = {
         "timestamp": dt.datetime.now().isoformat(),
-        "best_split": best
+        "results": {
+            "pA": best["pA"],
+            "pB": best["pB"],
+            "diff": best["diff"]
+        }
     }
 
     logs = []
