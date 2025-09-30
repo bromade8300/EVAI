@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 
 # --------- 1) Charger le dataset historique (pour entraîner le modèle) ----------
 try:
-    file_path = "./public/scripts/StatsjoueursLIGUE.xlsx"
+    file_path = "./StatsjoueursLIGUE.xlsx"
     df = pd.read_excel(file_path)
 except FileNotFoundError:
     absolute_path = os.path.abspath(file_path)
