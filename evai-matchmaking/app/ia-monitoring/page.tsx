@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 interface LogEntry {
   timestamp: string;
-  best_split: {
+  results: {
     pA: number;
     pB: number;
     diff: number;
@@ -52,27 +52,35 @@ export default function IAMonitoringPage() {
             </thead>
             <tbody>
               {logs.map((log, idx) => {
-                const diffPercent = Math.abs(log.best_split.diff * 100);
+                const diffPercent = Math.abs(log.results.diff * 100);
                 let diffColor = "bg-[var(--accent)]";
-                if (diffPercent < 0.01) diffColor = "bg-green-500";
-                else if (diffPercent < 0.1) diffColor = "bg-yellow-500";
-                else diffColor = "bg-red-500";
+                if (diffPercent > 15) diffColor = "bg-red-500";
+                else diffColor = "bg-green-500";
+
+                // Formatage du pourcentage : 4 décimales si < 0.01, sinon 2 décimales
+                let diffDisplay = "";
+                if (diffPercent < 0.01) {
+                  diffDisplay = diffPercent.toFixed(4) + "%";
+                } else {
+                  diffDisplay = diffPercent.toFixed(2) + "%";
+                }
+
                 return (
                   <tr key={idx} className={idx % 2 === 0 ? "bg-[var(--card)]" : "bg-[var(--popover)]"}>
                     <td className="py-2 px-2 font-mono text-xs text-[var(--muted-foreground)]">{new Date(log.timestamp).toLocaleString()}</td>
                     <td className="py-2 px-2">
                       <span className="px-2 py-1 rounded-lg font-bold bg-[var(--chart-1)] text-black shadow-neon">
-                        {(log.best_split.pA * 100).toFixed(2)}%
+                        {(log.results.pA * 100).toFixed(2)}%
                       </span>
                     </td>
                     <td className="py-2 px-2">
                       <span className="px-2 py-1 rounded-lg font-bold bg-[var(--chart-2)] text-black shadow-neon">
-                        {(log.best_split.pB * 100).toFixed(2)}%
+                        {(log.results.pB * 100).toFixed(2)}%
                       </span>
                     </td>
                     <td className="py-2 px-2">
                       <span className={`px-2 py-1 rounded-lg font-bold text-white shadow-neon ${diffColor}`}>
-                        {diffPercent.toExponential(2)}%
+                        {diffDisplay}
                       </span>
                     </td>
                   </tr>
