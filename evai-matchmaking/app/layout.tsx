@@ -20,6 +20,10 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        <nav className="w-full bg-gray-900 text-white px-4 py-2 flex gap-4 items-center">
+          <a href="/" className="font-bold hover:underline">Accueil</a>
+          <a href="/ia-monitoring" className="hover:underline">Surveillance de l'IA</a>
+        </nav>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
