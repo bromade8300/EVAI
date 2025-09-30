@@ -1,19 +1,19 @@
 {
     "teamA": [
-        "EVAxProGamer",
+        "SRDxNiko",
         "SRxEny",
-        "SRxMrCroustillant",
+        "SRxGeriko",
         "SRxT4all"
     ],
     "teamB": [
-        "QuantumGamer",
-        "SRDxNiko",
         "SRxAzWaK",
-        "VRxMaster"
+        "SRxMrCroustillant",
+        "YKxKiruaX",
+        "YKxNatinasss"
     ],
-    "avgA": 0.4483518318181823,
-    "avgB": 0.4483418623106066,
-    "pA": 0.5000055590374065,
-    "pB": 0.4999944409625935,
-    "diff": 5.559037406510647e-06
+    "avgA": 0.4481053040404045,
+    "avgB": 0.44810930726010156,
+    "pA": 0.4999977665953854,
+    "pB": 0.5000022334046146,
+    "diff": 2.233404614582213e-06
 }
