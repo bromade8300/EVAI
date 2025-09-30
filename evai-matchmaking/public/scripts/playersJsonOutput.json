@@ -24,42 +24,6 @@
     "Matches": 8
   },
   {
-    "Joueur": "SRxMrCroustillant",
-    "Score": 1950,
-    "Tués": 70,
-    "Assist": 16.2,
-    "Morts": 11.1,
-    "Dégâts": 1450,
-    "temps mort %": 11.1,
-    "Temps total_s": 75,
-    "Temps mort_s": 17.25,
-    "Matches": 6
-  },
-  {
-    "Joueur": "SRxAzWaK",
-    "Score": 2300,
-    "Tués": 105,
-    "Assist": 14.1,
-    "Morts": 8.5,
-    "Dégâts": 1700,
-    "temps mort %": 8.5,
-    "Temps total_s": 100,
-    "Temps mort_s": 19,
-    "Matches": 9
-  },
-  {
-    "Joueur": "SRxT4all",
-    "Score": 2150,
-    "Tués": 95,
-    "Assist": 12.9,
-    "Morts": 9.3,
-    "Dégâts": 1600,
-    "temps mort %": 9.3,
-    "Temps total_s": 90,
-    "Temps mort_s": 18.9,
-    "Matches": 8
-  },
-  {
     "Joueur": "SRxGeriko",
     "Score": 2350,
     "Tués": 110,
@@ -94,5 +58,41 @@
     "Temps total_s": 88,
     "Temps mort_s": 17.6,
     "Matches": 7
+  },
+  {
+    "Joueur": "QuantumGamer",
+    "Score": 2280,
+    "Tués": 108,
+    "Assist": 12.3,
+    "Morts": 8.7,
+    "Dégâts": 1720,
+    "temps mort %": 8.7,
+    "Temps total_s": 105,
+    "Temps mort_s": 18.9,
+    "Matches": 9
+  },
+  {
+    "Joueur": "CyberNinja",
+    "Score": 2180,
+    "Tués": 20,
+    "Assist": 14.8,
+    "Morts": 9.5,
+    "Dégâts": 1620,
+    "temps mort %": 9.5,
+    "Temps total_s": 92,
+    "Temps mort_s": 20.24,
+    "Matches": 8
+  },
+  {
+    "Joueur": "VRxMaster",
+    "Score": 1900,
+    "Tués": 65,
+    "Assist": 17.1,
+    "Morts": 12,
+    "Dégâts": 1400,
+    "temps mort %": 12,
+    "Temps total_s": 70,
+    "Temps mort_s": 17.5,
+    "Matches": 6
   }
 ]

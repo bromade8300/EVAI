@@ -151,8 +151,31 @@ try:
         "players": players_df.to_dict(orient="records"),
         "best_split": best
     }
-    with open("logs.json", "a", encoding="utf-8") as log_file:
-        log_file.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
-    print("\n✅ Log ajouté dans logs.json")
+
+    logs = []
+    log_file_path = "logs.json"
+
+    # Charger l’historique existant
+    if os.path.exists(log_file_path):
+        with open(log_file_path, "r", encoding="utf-8") as log_file:
+            for line in log_file:
+                try:
+                    logs.append(json.loads(line.strip()))
+                except json.JSONDecodeError:
+                    continue  # ignorer lignes corrompues
+
+    # Ajouter la nouvelle exécution
+    logs.append(log_entry)
+
+    # Garder seulement les 10 dernières
+    if len(logs) > 10:
+        logs = logs[-10:]
+
+    # Réécrire le fichier proprement (un JSON par ligne)
+    with open(log_file_path, "w", encoding="utf-8") as log_file:
+        for entry in logs:
+            log_file.write(json.dumps(entry, ensure_ascii=False) + "\n")
+
+    print("\n✅ Log mis à jour (max 10 entrées conservées)")
 except Exception as e:
-    print(f"Erreur lors de l'écriture du log : {e}")
+    print(f"Erreur lors de la mise à jour du log : {e}")
