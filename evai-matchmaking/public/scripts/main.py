@@ -111,10 +111,6 @@ def best_splits(players_df):
         denom = (avgA + avgB)
         pA = avgA / denom if denom > 0 else 0.5
         splits.append({
-            "teamA": sorted(teamA),
-            "teamB": sorted(teamB),
-            "avgA": float(avgA),
-            "avgB": float(avgB),
             "pA": float(pA),
             "pB": float(1 - pA),
             "diff": float(abs(pA - 0.5))
@@ -148,7 +144,6 @@ print(json.dumps(best, indent=4, ensure_ascii=False))
 try:
     log_entry = {
         "timestamp": dt.datetime.now().isoformat(),
-        "players": players_df.to_dict(orient="records"),
         "best_split": best
     }
 
@@ -175,6 +170,7 @@ try:
     with open(log_file_path, "w", encoding="utf-8") as log_file:
         for entry in logs:
             log_file.write(json.dumps(entry, ensure_ascii=False) + "\n")
+            log_file.write("\n")
 
     print("\n✅ Log mis à jour (max 10 entrées conservées)")
 except Exception as e:
