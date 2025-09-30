@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 
 # --------- 1) Charger le dataset historique (pour entraîner le modèle) ----------
 try:
-    file_path = "./public/script/StatsjoueursLIGUE.xlsx"
+    file_path = "./public/scripts/StatsjoueursLIGUE.xlsx"
     df = pd.read_excel(file_path)
 except FileNotFoundError:
     absolute_path = os.path.abspath(file_path)
@@ -146,7 +146,22 @@ print(json.dumps(best, indent=4, ensure_ascii=False))
 
 # --------- 5) Logging JSON pour la surveillance ---------
 try:
-    log_entry = {
+    log_file_path = "logs.json"
+
+    # Charger l'existant (tableau JSON) ou créer un nouveau tableau vide
+    if os.path.exists(log_file_path):
+        with open(log_file_path, "r", encoding="utf-8") as f:
+            try:
+                logs = json.load(f)
+                if not isinstance(logs, list):
+                    logs = []  # si jamais le fichier contient autre chose
+            except json.JSONDecodeError:
+                logs = []
+    else:
+        logs = []
+
+    # Ajouter un nouveau log basé sur la meilleure partition trouvée
+    nouveau_log = {
         "timestamp": dt.datetime.now().isoformat(),
         "results": {
             "pA": best["pA"],
@@ -154,32 +169,13 @@ try:
             "diff": best["diff"]
         }
     }
+    logs.append(nouveau_log)
 
-    logs = []
-    log_file_path = "logs.json"
+    # Réécrire tout le tableau JSON
+    with open(log_file_path, "w", encoding="utf-8") as f:
+        json.dump(logs, f, indent=4, ensure_ascii=False)
 
-    # Charger l’historique existant
-    if os.path.exists(log_file_path):
-        with open(log_file_path, "r", encoding="utf-8") as log_file:
-            for line in log_file:
-                try:
-                    logs.append(json.loads(line.strip()))
-                except json.JSONDecodeError:
-                    continue  # ignorer lignes corrompues
-
-    # Ajouter la nouvelle exécution
-    logs.append(log_entry)
-
-    # Garder seulement les 10 dernières
-    if len(logs) > 10:
-        logs = logs[-10:]
-
-    # Réécrire le fichier proprement (un JSON par ligne)
-    with open(log_file_path, "w", encoding="utf-8") as log_file:
-        for entry in logs:
-            log_file.write(json.dumps(entry, ensure_ascii=False) + "\n")
-            log_file.write("\n")
-
-    print("\n✅ Log mis à jour (max 10 entrées conservées)")
+    print(f"Log ajouté dans {log_file_path}.")
 except Exception as e:
-    print(f"Erreur lors de la mise à jour du log : {e}")
+    print(f"Erreur lors de la mise à jour des logs : {e}")
+
