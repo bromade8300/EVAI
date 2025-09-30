@@ -34,7 +34,7 @@ export default function IAMonitoringPage() {
 
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col items-center py-10 px-4">
-      <h1 className="text-3xl font-extrabold mb-8 tracking-tight text-[var(--primary)] drop-shadow-neon">Surveillance de l'IA</h1>
+      <h1 className="text-3xl font-extrabold mb-8 tracking-tight text-[var(--primary)]">Surveillance de l'IA</h1>
       <div className="w-full max-w-2xl rounded-xl shadow-lg bg-[var(--card)] border border-[var(--border)] overflow-hidden">
         {loading ? (
           <div className="p-8 text-center text-lg">Chargement des logs...</div>
