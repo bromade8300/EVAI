@@ -18,7 +18,7 @@ jobs:
       packages: write 
     
     env:
-      REPOSITORY_NAME: "ghcr.io/williampasset/EVAI"
+      REPOSITORY_NAME: "ghcr.io/bromade8300/EVAI"
     steps:
     - name: Checkout source code
       uses: actions/checkout@v4
