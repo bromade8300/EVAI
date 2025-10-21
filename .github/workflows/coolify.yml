@@ -47,8 +47,9 @@ jobs:
         env:  
           COOLIFY_WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
           TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          AUTH_HEADER=$(printf 'Authorization: Bearer %s' "$TOKEN")
         run: |
           curl --location --request POST "$COOLIFY_WEBHOOK" \
-            --header "Authorization: Bearer 6|DdDe5UK0lAwBwGxa26m8SGlqYAyci64ETq15PL2Z9d37e1d5" \
-            --header "Content-Type: application/json" \
+          --header "$AUTH_HEADER" \
+          --header "Content-Type: application/json" \
             --data '{}'
