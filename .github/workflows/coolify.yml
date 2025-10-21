@@ -1,0 +1,55 @@
+name: Deploy to Coolify
+
+on:
+  push:
+    branches:
+      - dev/add-surveillance  
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:dind
+    
+    permissions:
+      contents: read
+      packages: write 
+    
+    env:
+      REPOSITORY_NAME: "ghcr.io/bromade8300/evai"
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+    - name: Login to container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Build Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        push: true
+        tags: |
+          ${{ env.REPOSITORY_NAME }}:${{ github.sha }}
+          ${{ env.REPOSITORY_NAME }}:latest
+
+  deploy:
+    name: Trigger Coolify Deployment
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Triggering Coolify deployment
+        env:
+          COOLIFY_WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
+          TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+        run: |
+          echo "Triggering Coolify deployment..."
+          curl --location --request POST "$COOLIFY_WEBHOOK" \
+            --header "Authorization: Bearer $TOKEN" \
+            --header "Content-Type: application/json" \
+            --data '{}'
