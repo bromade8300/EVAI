@@ -1,0 +1,50 @@
+# Node/Next.js
+node_modules
+.next
+out
+
+# Dependency/package manager
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests/coverage
+coverage
+
+# Env
+.env
+.env.*
+
+# IDE/Editor
+.vscode
+.idea
+*.swp
+
+# Build
+build
+
+# Python scripts & outputs
+# public/scripts/*.py
+# public/scripts/*.json
+
+# Misc
+*.log
+*.tmp
+
+# Excel/exports
+# public/scripts/*.xlsx
+
+# Ignore local files
+# meilleure_partition.json
+# playersJsonOutput.json
+# components.json
