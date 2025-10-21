@@ -1,7 +1,7 @@
 FROM node:latest
 
 WORKDIR /app
-COPY . .
+COPY ./evai-matchmaking .
 RUN npm install
 RUN apt-get update && \
     apt-get install -y python3 python3-pip && \
