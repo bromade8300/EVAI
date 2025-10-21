@@ -44,11 +44,11 @@ jobs:
 
     steps:
       - name: Triggering Coolify deployment
-        env:
+        env:  
           COOLIFY_WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
           TOKEN: ${{ secrets.COOLIFY_TOKEN }}
         run: |
-          echo "Triggering Coolify deployment..."
+          echo "Webhook URL (first 10 chars): ${COOLIFY_WEBHOOK:0:10}..."
           curl --location --request POST "$COOLIFY_WEBHOOK" \
             --header "Authorization: Bearer $TOKEN" \
             --header "Content-Type: application/json" \
